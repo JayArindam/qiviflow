@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Qiviflow</title>
+  <link rel="icon" type="image/x-icon" href="2.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto+Condensed'><link rel="stylesheet" href="contact_us.css">
+
+</head>
+<body>
+
+  <div id="logo-container">
+		<img src="2.png" alt="Your Logo" class="logo">
+	</div>
+
+
+<div class="background">
+  <div class="container">
+    <div class="screen">
+      <div class="screen-header">
+        <div class="screen-header-left">
+          <div class="screen-header-button close"></div>
+          <div class="screen-header-button maximize"></div>
+          <div class="screen-header-button minimize"></div>
+        </div>
+        <div class="screen-header-right">
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+          <div class="screen-header-ellipsis"></div>
+        </div>
+      </div>
+      <div class="screen-body">
+        <div class="screen-body-item left">
+          <div class="app-title">
+            <span>CONTACT</span>
+            <span>US</span>
+          </div>
+          <div class="app-contact">CONTACT INFO : +62 81 314 928 595</div>
+        </div>
+        <div class="screen-body-item">
+          <div class="app-form">
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="NAME" id="name">
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="EMAIL" id="email">
+            </div>
+            <div class="app-form-group">
+              <input class="app-form-control" placeholder="CONTACT NO" id="phone">
+            </div>
+            <div class="app-form-group message">
+              <input class="app-form-control" placeholder="MESSAGE" id="message">
+            </div>
+            <div class="app-form-group buttons">
+              <button class="app-form-button">CANCEL</button>
+              <button class="app-form-button" type="submit" id="submit">SEND</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+apiKey: "AIzaSyDDmxH1UFM6XHb85s3-ReSuJUu8CdnDtlI",
+authDomain: "sample-to-show.firebaseapp.com",
+projectId: "sample-to-show",
+storageBucket: "sample-to-show.appspot.com",
+messagingSenderId: "165788738958",
+appId: "1:165788738958:web:6d62563fc7d52c7b72b0df"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+//get ref to database services
+const db = getDatabase(app);
+
+document.getElementById("submit").addEventListener('click', function(e){
+ e.preventDefault();
+ set(ref(db, 'contact/' + document.getElementById("name").value),
+ {
+
+   username: document.getElementById("name").value,
+   email: document.getElementById("email").value,
+   phone_number: document.getElementById("phone").value,
+   message: document.getElementById("message").value,
+ });
+   alert("Data Submitted Successfully!");
+})
+</script>
+
+</body>
+</html>
